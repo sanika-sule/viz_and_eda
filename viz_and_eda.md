@@ -74,6 +74,8 @@ ggplot(weather_df, aes(x = tmin, y = tmax)) + geom_point(aes(color = name))
 
 ![](viz_and_eda_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
+## Plot with smooth line
+
 ``` r
 ggplot(weather_df, aes(x = tmin, y = tmax)) + 
   geom_point(aes(color = name), alpha = .5) +
@@ -87,3 +89,37 @@ ggplot(weather_df, aes(x = tmin, y = tmax)) +
     ## Warning: Removed 17 rows containing missing values (`geom_point()`).
 
 ![](viz_and_eda_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+## Plot with facets
+
+``` r
+ggplot (weather_df, aes(x = tmin, y = tmax, color = name)) +
+  geom_point(alpha = .3) +
+  geom_smooth() +
+  facet_grid(. ~ name)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+    ## Warning: Removed 17 rows containing non-finite values (`stat_smooth()`).
+
+    ## Warning: Removed 17 rows containing missing values (`geom_point()`).
+
+![](viz_and_eda_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+## Trying a different plot
+
+``` r
+ggplot(weather_df, aes(x = date, y = tmax, color = name)) +
+  geom_point(aes(size = prcp), alpha = .3) + 
+  geom_smooth(se = FALSE) +
+  facet_grid(. ~ name)
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+    ## Warning: Removed 17 rows containing non-finite values (`stat_smooth()`).
+
+    ## Warning: Removed 19 rows containing missing values (`geom_point()`).
+
+![](viz_and_eda_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
