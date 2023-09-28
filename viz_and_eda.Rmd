@@ -3,12 +3,12 @@ title: "Viz part 1"
 output: github_document
 date: "2023-09-28"
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+## R Markdown
+library(ggridges)
+library(tidyverse)
 ```
 
-## R Markdown
 
 ```{r}
 weather_df = 
@@ -27,5 +27,25 @@ weather_df =
     tmax = tmax / 10) |>
   select(name, id, everything())
 ```
+
+```{r}
+ggplot(weather_df, aes(x = tmin, y = tmax)) + 
+  geom_point()
+```
+
+## Fancy plot
+
+```{r}
+ggplot(weather_df, aes(x = tmin, y = tmax)) + geom_point(aes(color = name))
+```
+
+```{r}
+ggplot(weather_df, aes(x = tmin, y = tmax)) + 
+  geom_point(aes(color = name), alpha = .5) +
+  geom_smooth(se = FALSE)
+```
+
+
+
 
 
